@@ -15,7 +15,6 @@ function getParams() {
 
 
 function searchApi(query, format) {
-  var apiKey = "3fc93a864fmsha6eb4d6d234e809p1d678fjsn6ae16889f063"
   var fetchDrinkList = fetch(`https://the-cocktail-db.p.rapidapi.com`, {
     "method": "GET",
     "headers": {
@@ -106,16 +105,8 @@ function printResults(resultObj) {
 
 function handleSearchFormSubmit(event) {
   event.preventDefault();
-
   var searchInputVal = document.querySelector('#search-input').value;
   var formatInputVal = document.querySelector('#format-input').value;
-
-  if (!searchInputVal) {
-    searchInputVal = formatInputVal
-    console.error('You need a search input value!');
-    return;
-  }
-
   searchApi(searchInputVal, formatInputVal);
  
 }
