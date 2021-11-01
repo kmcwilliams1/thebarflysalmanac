@@ -50,13 +50,12 @@ function searchApi(query, format) {
         resultCard.append(resultBody);
 
         var titleEl = document.createElement("h3");
+        titleEl.classList.add("h3")
         titleEl.textContent = element.strDrink;
 
         var bodyContentEl1 = document.createElement("p");
-        var bodyContentEl2 = document.createElement("ul");
-        bodyContentEl2.classList.add("column");
-        var bodyContentEl3 = document.createElement("ul");
-        bodyContentEl3.classList.add("column");
+        var bodyContentEl2 = document.createElement("p");
+        bodyContentEl2.classList.add("ingredients", "glass")
         var bodyContentEl4 = document.createElement("p");
 
         bodyContentEl1.innerHTML =
@@ -74,6 +73,8 @@ function searchApi(query, format) {
         tempArr = [];
         for (let i of ingredientsArray) i && tempArr.push(i);
         ingredientsArray = tempArr;
+
+
         var measureArray = [
           element.strMeasure1,
           element.strMeasure2,
@@ -87,20 +88,33 @@ function searchApi(query, format) {
         for (let i of measureArray) i && tempArr2.push(i);
         measureArray = tempArr2;
 
+        newIngredientsArray = [];
+
+        for (let i = 0; i < ingredientsArray.length; i++) {
+          if (i === 0) {
+            newIngredientsArray.push(measureArray[i] + ingredientsArray[i])
+          }
+          else if (i < measureArray.length) {
+            newIngredientsArray.push(" " + measureArray[i] + " of " + ingredientsArray[i])
+          }
+        }
+
+        console.log(newIngredientsArray)
+
+
+
+
+
+
         // console.log(element.strIngredient1)
         console.log(ingredientsArray);
         console.log(measureArray);
 
-        bodyContentEl2.innerHTML += '<div>' + "<strong>Ingredients:</strong> " + '</div>' + "</br>";
 
         if (ingredientsArray) {
-          bodyContentEl2.innerHTML += "<ol>" + ingredientsArray + "</ol>";
+          bodyContentEl2.innerHTML += '<div>' + "<strong>Ingredients:</strong> " + '</div>' + newIngredientsArray +"</br>";
         }
-        if (measureArray) {
-          bodyContentEl3.innerHTML += "<ol>" + measureArray + "</ol>";
-          // '<strong>Measure:</strong> ' + measureArray +
-          '</br>'
-        } else {
+         else {
           bodyContentE3.innerHTML +=
             "<strong>Ingredients:</strong> No ingredients for this entry.";
           ("</br>");
@@ -126,7 +140,6 @@ function searchApi(query, format) {
           imgThumbEl,
           bodyContentEl1,
           bodyContentEl2,
-          bodyContentEl3,
           bodyContentEl4,
         );
         resultContentEl.append(resultCard);
