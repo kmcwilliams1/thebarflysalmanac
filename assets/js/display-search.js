@@ -47,7 +47,7 @@ function searchApi(query, format) {
 
         var bodyContentEl = document.createElement('p');
         bodyContentEl.innerHTML =
-          '<strong>Date:</strong> ' + element.strGlass + '<br/>';
+          '<strong>Served in:</strong> ' + element.strGlass + '<br/>';
          
          
           var ingredientsArray = [element.strIngredient1, element.strIngredient2, element.strIngredient3, element.strIngredient4, element.strIngredient5, element.strIngredient6, element.strIngredient7 ];
@@ -69,14 +69,17 @@ console.log(ingredientsArray)
 console.log(measureArray)
 
 
-        if (response.strIngredient1) {
+        if (ingredientsArray) {
           bodyContentEl.innerHTML +=
-            '<strong>Ingredients:</strong> ' + ingredientsArray;
-            '<br/>';
+            '<strong>Ingredients:</strong> ' + ingredientsArray +
+            '</br>'
         } else {
           bodyContentEl.innerHTML +=
             '<strong>Ingredients:</strong> No ingredients for this entry.';
+            '</br>'
         }
+        
+        
         if (element.strInstructions) {
           bodyContentEl.innerHTML += 
           '<strong>Instructions:</strong> ' + element.strInstructions;
