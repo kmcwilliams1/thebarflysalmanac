@@ -23,6 +23,7 @@ h3{
 .ingredients{
   display: flex;
   flex-wrap: wrap;
+  padding: 2%;
 }
 
 .width {
@@ -33,12 +34,3 @@ h3{
 .picture {
   float: right;
 }
-/* 
-.glass{
-  float: right;
-}
-
-.container {
-  justify-content:space-between;
-  flex-wrap: wrap;
-} */

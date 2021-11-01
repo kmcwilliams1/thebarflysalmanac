@@ -1,12 +1,9 @@
-// var resultTextEl = document.querySelector("#result-text");
 var resultContentEl = document.querySelector("#result-content");
 var searchFormEl = document.querySelector("#search-form");
 
 function getParams() {
-  // Get the search params out of the URL (i.e. `?q=london&format=photo`) and convert it to an array (i.e. ['?q=london', 'format=photo'])
   var searchParamsArr = document.location.search.split("&");
 
-  // Get the query and format values
   var query = searchParamsArr[0].split("=").pop();
   var format = searchParamsArr[1].split("=").pop();
 
@@ -14,13 +11,6 @@ function getParams() {
 }
 
 function searchApi(query, format) {
-  // fetch(`https://the-cocktail-db.p.rapidapi.com`, {
-  //   "method": "GET",
-  //   "headers": {
-  //     "x-rapidapi-host": "the-cocktail-db.p.rapidapi.com",
-  //     "x-rapidapi-key": "3fc93a864fmsha6eb4d6d234e809p1d678fjsn6ae16889f063"
-  //   }
-  // })
   if (query) {
     fetchDrinkList =
       `https://www.thecocktaildb.com/api/json/v1/1/search.php?s=` + query;
@@ -33,8 +23,7 @@ function searchApi(query, format) {
     .then((response) => {
       for (let i = 0; i < response.drinks.length; i++) {
         const element = response.drinks[i];
-        console.log(element);
-        // console.log(response)
+        console.log(element)
         var resultCard = document.createElement("section");
         resultCard.classList.add(
           "card",
@@ -50,13 +39,17 @@ function searchApi(query, format) {
         resultCard.append(resultBody);
 
         var titleEl = document.createElement("h3");
-        titleEl.classList.add("h3")
+        titleEl.classList.add("h3");
         titleEl.textContent = element.strDrink;
 
+        var imgThumbEl = document.createElement("img");
+        imgThumbEl.setAttribute("src", element.strDrinkThumb);
+        imgThumbEl.classList.add("width", "picture");
+
         var bodyContentEl1 = document.createElement("p");
-        var bodyContentEl2 = document.createElement("div");
-        bodyContentEl2.classList.add("ingredients", "glass")
-        var bodyContentEl4 = document.createElement("div");
+        var bodyContentEl2 = document.createElement("p");
+        bodyContentEl2.classList.add("ingredients", "glass");
+        var bodyContentEl4 = document.createElement("p");
 
         bodyContentEl1.innerHTML =
           "<strong>Served in:</strong> " + element.strGlass + "<br/>";
@@ -74,7 +67,6 @@ function searchApi(query, format) {
         for (let i of ingredientsArray) i && tempArr.push(i);
         ingredientsArray = tempArr;
 
-
         var measureArray = [
           element.strMeasure1,
           element.strMeasure2,
@@ -88,28 +80,42 @@ function searchApi(query, format) {
         for (let i of measureArray) i && tempArr2.push(i);
         measureArray = tempArr2;
 
+        // if (tempArr2 < tempArr){
+        //   newIngredientsArray2.push()
+        // }
+
         newIngredientsArray = [];
-
-        for (let i = 0; i < ingredientsArray.length; i++) {
-          if (i === 0) {
-            newIngredientsArray.push(measureArray[i] + ingredientsArray[i])
-          }
-          else if (i < measureArray.length) {
-            newIngredientsArray.push(" " + measureArray[i] + " " + ingredientsArray[i])
-          }
-        }
-
         console.log(newIngredientsArray)
+        for (let i = 0; i < ingredientsArray.length; i++) {
 
-        // console.log(element.strIngredient1)
-        console.log(ingredientsArray);
-        console.log(measureArray);
 
+          // i dont think we need the i === 0
+          // if (i === 0) {
+          //   newIngredientsArray.push(measureArray[i] + ingredientsArray[i]);
+          // } else 
+          if (i < measureArray.length) {
+            newIngredientsArray.push(
+              " " + measureArray[i] + " " + ingredientsArray[i]
+            );
+          }
+          else if ( measureArray.length < ingredientsArray.length) {
+            newIngredientsArray.push(
+              " " + measureArray[i] + " " + ingredientsArray[i]
+            );
+          }
+          // else if (measureArray < ingredientsArray) {
+          //   if (measureArray === undefined){
+          //   newIngredientsArray.push(
+          //     " " + measureArray + " " + ingredientsArray[i]
+          //   )
+          //   }
+          // }
+        }
 
         if (ingredientsArray) {
-          bodyContentEl2.innerHTML += "<strong>Ingredients:</strong> " + newIngredientsArray +"</br>";
-        }
-         else {
+          bodyContentEl2.innerHTML +=
+            "<strong>Ingredients: </strong>" + "</br>" + newIngredientsArray + "</br>";
+        } else {
           bodyContentE3.innerHTML +=
             "<strong>Ingredients:</strong> No ingredients for this entry.";
           ("</br>");
@@ -117,7 +123,7 @@ function searchApi(query, format) {
 
         if (element.strInstructions) {
           bodyContentEl4.innerHTML +=
-            "<strong>Instructions:</strong> " + element.strInstructions;
+            "<strong>Instructions:</strong> " + "</br>" + element.strInstructions;
           ("</br>");
         } else {
           bodyContentEl4.innerHTML +=
@@ -125,17 +131,12 @@ function searchApi(query, format) {
           ("</br>");
         }
 
-        var imgThumbEl = document.createElement('img');
-        // imgThumbEl.textContent = 'Read More';
-        imgThumbEl.setAttribute('src', element.strDrinkThumb);
-        imgThumbEl.classList.add('width', 'picture');
-
         resultBody.append(
           titleEl,
           imgThumbEl,
           bodyContentEl1,
           bodyContentEl2,
-          bodyContentEl4,
+          bodyContentEl4
         );
         resultContentEl.append(resultCard);
       }
@@ -149,14 +150,13 @@ function handleSearchFormSubmit(event) {
   event.preventDefault();
   var searchInputVal = document.querySelector("#search-input").value;
   var formatInputVal = document.querySelector("#format-input").value;
-  var queryString = './search-results.html?q=' + searchInputVal + '&format=' + formatInputVal;
+  var queryString =
+    "./search-results.html?q=" + searchInputVal + "&format=" + formatInputVal;
   location.assign(queryString);
   searchApi(searchInputVal, formatInputVal);
-  console.log(fetchDrinkList)
+  console.log(fetchDrinkList);
 }
 
 searchFormEl.addEventListener("submit", handleSearchFormSubmit);
 
 getParams();
-
-// commit this
