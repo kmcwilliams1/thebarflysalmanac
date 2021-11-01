@@ -15,7 +15,7 @@ function getParams() {
 
 
 function searchApi(query, format) {
-  var fetchDrinkList = fetch(`https://the-cocktail-db.p.rapidapi.com`, {
+  fetch(`https://the-cocktail-db.p.rapidapi.com`, {
     "method": "GET",
     "headers": {
       "x-rapidapi-host": "the-cocktail-db.p.rapidapi.com",
@@ -31,26 +31,60 @@ function searchApi(query, format) {
   fetch(fetchDrinkList)
     .then(headers => headers.json())
     .then(response => {
-      console.log(response);
-    })
-    .then(function(locRes) {
-      // write query to page so user knows what they are viewing
-      resultTextEl.textContent = locRes.search.query;
-      console.log(locRes);
-      if (!locRes.response.length) {
-        console.log('No results found!');
-        resultContentEl.innerHTML = '<h3>No results found, search again!</h3>';
-      } else {
-        resultContentEl.textContent = '';
-        for (var i = 0; i < locRes.results.length; i++) {
-          printResults(locRes.results[i]);
-        }
+      for (let i = 0; i < response.drinks.length; i++) {
+        const element = response.drinks[i];
+        console.log(element);
       }
-    })
+    }
+    var resultCard = document.createElement('div');
+    resultCard.classList.add('card', 'bg-light', 'text-dark', 'mb-3', 'p-3');
+  
+    var resultBody = document.createElement('div');
+    resultBody.classList.add('card-body');
+    resultCard.append(resultBody);
+  
+    var titleEl = document.createElement('h3');
+    titleEl.textContent = resultObj.strDrink;
+  
+    var bodyContentEl = document.createElement('p');
+    bodyContentEl.innerHTML =
+      '<strong>Date:</strong> ' + resultObj.strGlass + '<br/>';
+  
+    if (resultObj.subject) {
+      bodyContentEl.innerHTML +=
+        '<strong>Subjects:</strong> ' + resultObj.strIngredient1.join(', ') +
+        '<strong>Subjects:</strong> ' + resultObj.strIngredient2.join(', ') +
+        '<strong>Subjects:</strong> ' + resultObj.strIngredient3.join(', ') +
+        '<strong>Subjects:</strong> ' + resultObj.strIngredient4.join(', ') +
+        '<strong>Subjects:</strong> ' + resultObj.strIngredient5.join(', ') +
+        '<strong>Subjects:</strong> ' + resultObj.strIngredient6.join(', ') +
+        '<strong>Subjects:</strong> ' + resultObj.strIngredient7.join(', ') + '<br/>';
+    } else {
+      bodyContentEl.innerHTML +=
+        '<strong>Subjects:</strong> No subject for this entry.';
+    }
+  
+    if (resultObj.description) {
+      bodyContentEl.innerHTML +=
+        '<strong>Description:</strong> ' + resultObj.description[0];
+    } else {
+      bodyContentEl.innerHTML +=
+        '<strong>Description:</strong>  No description for this entry.';
+    }
+  
+    var linkButtonEl = document.createElement('a');
+    linkButtonEl.textContent = 'Read More';
+    linkButtonEl.setAttribute('href', resultObj.url);
+    linkButtonEl.classList.add('btn', 'btn-dark');
+  
+    resultBody.append(titleEl, bodyContentEl, linkButtonEl);
+  
+    resultContentEl.append(resultCard);
+    
+    )
     .catch(err => {
       console.error(err);
     });
-
 }
 
 function printResults(resultObj) {
@@ -73,11 +107,11 @@ function printResults(resultObj) {
 
   if (resultObj.subject) {
     bodyContentEl.innerHTML +=
-      '<strong>Subjects:</strong> ' + resultObj.strIngredient1.join(', ') + 
-      '<strong>Subjects:</strong> ' + resultObj.strIngredient2.join(', ') + 
-      '<strong>Subjects:</strong> ' + resultObj.strIngredient3.join(', ') + 
-      '<strong>Subjects:</strong> ' + resultObj.strIngredient4.join(', ') + 
-      '<strong>Subjects:</strong> ' + resultObj.strIngredient5.join(', ') + 
+      '<strong>Subjects:</strong> ' + resultObj.strIngredient1.join(', ') +
+      '<strong>Subjects:</strong> ' + resultObj.strIngredient2.join(', ') +
+      '<strong>Subjects:</strong> ' + resultObj.strIngredient3.join(', ') +
+      '<strong>Subjects:</strong> ' + resultObj.strIngredient4.join(', ') +
+      '<strong>Subjects:</strong> ' + resultObj.strIngredient5.join(', ') +
       '<strong>Subjects:</strong> ' + resultObj.strIngredient6.join(', ') +
       '<strong>Subjects:</strong> ' + resultObj.strIngredient7.join(', ') + '<br/>';
   } else {
@@ -108,7 +142,7 @@ function handleSearchFormSubmit(event) {
   var searchInputVal = document.querySelector('#search-input').value;
   var formatInputVal = document.querySelector('#format-input').value;
   searchApi(searchInputVal, formatInputVal);
- 
+  console.log(fetchDrinkList)
 }
 
 searchFormEl.addEventListener('submit', handleSearchFormSubmit);
