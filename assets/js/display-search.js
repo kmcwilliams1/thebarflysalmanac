@@ -34,53 +34,54 @@ function searchApi(query, format) {
       for (let i = 0; i < response.drinks.length; i++) {
         const element = response.drinks[i];
         console.log(element);
+
+        var resultCard = document.createElement('div');
+        resultCard.classList.add('card', 'bg-light', 'text-dark', 'mb-3', 'p-3');
+      
+        var resultBody = document.createElement('div');
+        resultBody.classList.add('card-body');
+        resultCard.append(resultBody);
+      
+        var titleEl = document.createElement('h3');
+        titleEl.textContent = element.strDrink;
+      
+        var bodyContentEl = document.createElement('p');
+        bodyContentEl.innerHTML =
+          '<strong>Date:</strong> ' + element.strGlass + '<br/>';
+      
+        if (element.subject) {
+          bodyContentEl.innerHTML +=
+            '<strong>Subjects:</strong> ' + element.strIngredient1.join(', ') +
+            '<strong>Subjects:</strong> ' + element.strIngredient2.join(', ') +
+            '<strong>Subjects:</strong> ' + element.strIngredient3.join(', ') +
+            '<strong>Subjects:</strong> ' + element.strIngredient4.join(', ') +
+            '<strong>Subjects:</strong> ' + element.strIngredient5.join(', ') +
+            '<strong>Subjects:</strong> ' + element.strIngredient6.join(', ') +
+            '<strong>Subjects:</strong> ' + element.strIngredient7.join(', ') + '<br/>';
+        } else {
+          bodyContentEl.innerHTML +=
+            '<strong>Subjects:</strong> No subject for this entry.';
+        }
+      
+        if (element.description) {
+          bodyContentEl.innerHTML +=
+            '<strong>Description:</strong> ' + element.description[0];
+        } else {
+          bodyContentEl.innerHTML +=
+            '<strong>Description:</strong>  No description for this entry.';
+        }
+      
+        var linkButtonEl = document.createElement('a');
+        linkButtonEl.textContent = 'Read More';
+        linkButtonEl.setAttribute('href', element.url);
+        linkButtonEl.classList.add('btn', 'btn-dark');
+      
+        resultBody.append(titleEl, bodyContentEl, linkButtonEl);
+      
+        resultContentEl.append(resultCard);
+
       }
-    }
-    var resultCard = document.createElement('div');
-    resultCard.classList.add('card', 'bg-light', 'text-dark', 'mb-3', 'p-3');
-  
-    var resultBody = document.createElement('div');
-    resultBody.classList.add('card-body');
-    resultCard.append(resultBody);
-  
-    var titleEl = document.createElement('h3');
-    titleEl.textContent = resultObj.strDrink;
-  
-    var bodyContentEl = document.createElement('p');
-    bodyContentEl.innerHTML =
-      '<strong>Date:</strong> ' + resultObj.strGlass + '<br/>';
-  
-    if (resultObj.subject) {
-      bodyContentEl.innerHTML +=
-        '<strong>Subjects:</strong> ' + resultObj.strIngredient1.join(', ') +
-        '<strong>Subjects:</strong> ' + resultObj.strIngredient2.join(', ') +
-        '<strong>Subjects:</strong> ' + resultObj.strIngredient3.join(', ') +
-        '<strong>Subjects:</strong> ' + resultObj.strIngredient4.join(', ') +
-        '<strong>Subjects:</strong> ' + resultObj.strIngredient5.join(', ') +
-        '<strong>Subjects:</strong> ' + resultObj.strIngredient6.join(', ') +
-        '<strong>Subjects:</strong> ' + resultObj.strIngredient7.join(', ') + '<br/>';
-    } else {
-      bodyContentEl.innerHTML +=
-        '<strong>Subjects:</strong> No subject for this entry.';
-    }
-  
-    if (resultObj.description) {
-      bodyContentEl.innerHTML +=
-        '<strong>Description:</strong> ' + resultObj.description[0];
-    } else {
-      bodyContentEl.innerHTML +=
-        '<strong>Description:</strong>  No description for this entry.';
-    }
-  
-    var linkButtonEl = document.createElement('a');
-    linkButtonEl.textContent = 'Read More';
-    linkButtonEl.setAttribute('href', resultObj.url);
-    linkButtonEl.classList.add('btn', 'btn-dark');
-  
-    resultBody.append(titleEl, bodyContentEl, linkButtonEl);
-  
-    resultContentEl.append(resultCard);
-    
+    }  
     )
     .catch(err => {
       console.error(err);
