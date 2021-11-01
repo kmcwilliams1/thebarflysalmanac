@@ -34,7 +34,7 @@ function searchApi(query, format) {
       for (let i = 0; i < response.drinks.length; i++) {
         const element = response.drinks[i];
         console.log(element);
-
+        console.log(response)
         var resultCard = document.createElement('div');
         resultCard.classList.add('card', 'bg-light', 'text-dark', 'mb-3', 'p-3');
 
@@ -48,8 +48,17 @@ function searchApi(query, format) {
         var bodyContentEl = document.createElement('p');
         bodyContentEl.innerHTML =
           '<strong>Date:</strong> ' + element.strGlass + '<br/>';
+         const ingredientsArray = [element.strIngredient1, element.strIngredient2, element.strIngredient3, element.strIngredient4, element.strIngredient5, element.strIngredient6, element.strIngredient7 ];
 
-        if (element.subject) {
+        if(ingredientsArray[i] === null){
+          
+        }
+        
+console.log(element.strIngredient1)
+console.log(ingredientsArray)
+
+
+        if (response.strIngredient1) {
           bodyContentEl.innerHTML +=
             '<strong>Ingredients:</strong> ' + element.strIngredient1.join(', ') +
             element.strIngredient2.join(', ') +
@@ -62,17 +71,16 @@ function searchApi(query, format) {
           bodyContentEl.innerHTML +=
             '<strong>Ingredients:</strong> No ingredients for this entry.';
         }
-        '<br>'
         if (element.strInstructions) {
-          bodyContentEl.innerHTML += '<br>'
+          bodyContentEl.innerHTML += 
           '<strong>Instructions:</strong> ' + element.strInstructions;
           '</br>'
         } else {
-          bodyContentEl.innerHTML += '<br>'
+          bodyContentEl.innerHTML += 
           '<strong>Instructions:</strong>  No instructions for this entry.';
           '</br>'
         }
-        '</br>'
+
 
         // var linkButtonEl = document.createElement('a');
         // linkButtonEl.textContent = 'Read More';
