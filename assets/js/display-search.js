@@ -50,9 +50,8 @@ function searchApi(query, format) {
           '<strong>Date:</strong> ' + element.strGlass + '<br/>';
          const ingredientsArray = [element.strIngredient1, element.strIngredient2, element.strIngredient3, element.strIngredient4, element.strIngredient5, element.strIngredient6, element.strIngredient7 ];
 
-        if(ingredientsArray[i] === null){
-          
-        }
+        
+        
         
 console.log(element.strIngredient1)
 console.log(ingredientsArray)
@@ -60,13 +59,8 @@ console.log(ingredientsArray)
 
         if (response.strIngredient1) {
           bodyContentEl.innerHTML +=
-            '<strong>Ingredients:</strong> ' + element.strIngredient1.join(', ') +
-            element.strIngredient2.join(', ') +
-            element.strIngredient3.join(', ') +
-            element.strIngredient4.join(', ') +
-            element.strIngredient5.join(', ') +
-            element.strIngredient6.join(', ') +
-            element.strIngredient7.join(', ') + '<br/>';
+            '<strong>Ingredients:</strong> ' + ingredientsArray;
+            '<br/>';
         } else {
           bodyContentEl.innerHTML +=
             '<strong>Ingredients:</strong> No ingredients for this entry.';
