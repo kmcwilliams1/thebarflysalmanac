@@ -11,3 +11,8 @@ h6 {
   font-family: 'Merriweather', serif;
   font-weight: 700;
 }
+
+.column1 {
+  display: flex;
+  flex-direction: column;
+}
