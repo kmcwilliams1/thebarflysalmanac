@@ -4,7 +4,6 @@ body {
 
 h1,
 h2,
-h3,
 h4,
 h5,
 h6 {
@@ -26,11 +25,6 @@ h3{
   flex-wrap: wrap;
 }
 
-.column1 {
-  display: flex;
-  flex-direction: column;
-}
-
 .width {
   width: 100px;
   height: auto;
@@ -39,7 +33,7 @@ h3{
 .picture {
   float: right;
 }
-
+/* 
 .glass{
   float: right;
 }
@@ -47,4 +41,4 @@ h3{
 .container {
   justify-content:space-between;
   flex-wrap: wrap;
-}
+} */

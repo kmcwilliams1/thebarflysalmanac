@@ -1,4 +1,4 @@
-var resultTextEl = document.querySelector("#result-text");
+// var resultTextEl = document.querySelector("#result-text");
 var resultContentEl = document.querySelector("#result-content");
 var searchFormEl = document.querySelector("#search-form");
 
@@ -45,8 +45,8 @@ function searchApi(query, format) {
           "container"
         );
 
-        var resultBody = document.createElement("section");
-        resultBody.classList.add("card-body", "container");
+        var resultBody = document.createElement("div");
+        resultBody.classList.add("card-body");
         resultCard.append(resultBody);
 
         var titleEl = document.createElement("h3");
@@ -54,9 +54,9 @@ function searchApi(query, format) {
         titleEl.textContent = element.strDrink;
 
         var bodyContentEl1 = document.createElement("p");
-        var bodyContentEl2 = document.createElement("p");
+        var bodyContentEl2 = document.createElement("div");
         bodyContentEl2.classList.add("ingredients", "glass")
-        var bodyContentEl4 = document.createElement("p");
+        var bodyContentEl4 = document.createElement("div");
 
         bodyContentEl1.innerHTML =
           "<strong>Served in:</strong> " + element.strGlass + "<br/>";
@@ -95,16 +95,11 @@ function searchApi(query, format) {
             newIngredientsArray.push(measureArray[i] + ingredientsArray[i])
           }
           else if (i < measureArray.length) {
-            newIngredientsArray.push(" " + measureArray[i] + " of " + ingredientsArray[i])
+            newIngredientsArray.push(" " + measureArray[i] + " " + ingredientsArray[i])
           }
         }
 
         console.log(newIngredientsArray)
-
-
-
-
-
 
         // console.log(element.strIngredient1)
         console.log(ingredientsArray);
@@ -112,7 +107,7 @@ function searchApi(query, format) {
 
 
         if (ingredientsArray) {
-          bodyContentEl2.innerHTML += '<div>' + "<strong>Ingredients:</strong> " + '</div>' + newIngredientsArray +"</br>";
+          bodyContentEl2.innerHTML += "<strong>Ingredients:</strong> " + newIngredientsArray +"</br>";
         }
          else {
           bodyContentE3.innerHTML +=

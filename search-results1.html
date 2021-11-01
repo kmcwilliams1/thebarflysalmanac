@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Results | The Bar Fly's Almanac</title>
+  <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400&family=Merriweather:wght@700&display=swap"
+    rel="stylesheet" />
+    <link rel="stylesheet" href="./assets/css/jass.css" />
+    <link rel="stylesheet" href="./assets/css/style.css" />
+</head>
+
+<body>
+
+  <div class="flex-row align-start align-stretch-md align-content-start align-content-stretch-md min-100-vh bg-dark">
+    <div class="col-12 col-md-3 bg-link p-3">
+      <h1 class="text-primary">The Bar Fly's Almanac</h1>
+      <form id="search-form" class="mb-2">
+        <input id="search-input" class="form-input w-100" type="text" placeholder="Search!">
+        <select id="format-input" class="form-input w-100">
+          <option value="" disabled selected>Select a alcohol...</option>
+          <option value="bourbon">Bourbon</option>
+          <option value="brandy">Brandy</option>
+          <option value="champagne">Champagne</option>
+          <option value="gin">Gin</option>
+          <option value="port">Port</option>
+          <option value="rum">Rum</option>
+          <option value="tequila">Tequila</option>
+          <option value="vermouth">Vermouth</option>
+          <option value="vodka">Vodka</option>
+          <option value="wine">Wine</option>
+        </select>
+        <button class="btn btn-info btn-block">Search</button>
+      </form>
+
+      <a href="./index.html" class="btn btn-block btn-black">&larr; Go back.</a>
+    </div>
+
+    <div class="col-12 col-md-9 p-3 text-light">
+      <h2>Showing results for <span id="result-text"></span></h2>
+      <div id="result-content">
+          <section class="card bg-primary text-white mb-3 p-3 container">
+              <section class="card-body container">
+                  <h3>Gin Fizz</h3>
+                  <img src="https://www.thecocktaildb.com/images/media/drink/drtihp1606768397.jpg" class="width picture"><p>
+                      <strong>Served in:</strong> Highball glass<br></p>
+                      <p>
+                          <div><strong>Ingredients:</strong> 
+                        </div>
+                          <br><ol>Gin,Lemon,Powdered sugar,Carbonated water</ol>
+                        </p>
+                        <ul class="column">
+                            <ol>2 oz ,Juice of 1/2 ,1 tsp </ol>
+                        </ul>
+                        <p><strong>Instructions:</strong> Shake all ingredients with ice cubes, except soda water. Pour into glass. Top with soda water.</p>
+                    </section>
+                </section>
+            </div>
+    </div>
+  </div>
+
+  <script src="./assets/js/display-search.js"></script>
+</body>
+
+</html>
