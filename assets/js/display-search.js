@@ -34,7 +34,7 @@ function searchApi(query, format) {
       for (let i = 0; i < response.drinks.length; i++) {
         const element = response.drinks[i];
         console.log(element);
-        console.log(response)
+        // console.log(response)
         var resultCard = document.createElement('div');
         resultCard.classList.add('card', 'bg-light', 'text-dark', 'mb-3', 'p-3');
 
@@ -48,13 +48,25 @@ function searchApi(query, format) {
         var bodyContentEl = document.createElement('p');
         bodyContentEl.innerHTML =
           '<strong>Date:</strong> ' + element.strGlass + '<br/>';
-         const ingredientsArray = [element.strIngredient1, element.strIngredient2, element.strIngredient3, element.strIngredient4, element.strIngredient5, element.strIngredient6, element.strIngredient7 ];
-
+         
+         
+          var ingredientsArray = [element.strIngredient1, element.strIngredient2, element.strIngredient3, element.strIngredient4, element.strIngredient5, element.strIngredient6, element.strIngredient7 ];
+            tempArr = [];
+            for( let i of ingredientsArray)
+                i && tempArr.push(i);
+                ingredientsArray = tempArr;
+          var measureArray = [element.strMeasure1, element.strMeasure2, element.strMeasure3, element.strMeasure4, element.strMeasure5, element.strMeasure6, element.strMeasure7 ];
+            tempArr2 = [];
+            for( let i of measureArray)
+                i && tempArr2.push(i);
+                measureArray = tempArr2;
         
         
         
-console.log(element.strIngredient1)
+        
+// console.log(element.strIngredient1)
 console.log(ingredientsArray)
+console.log(measureArray)
 
 
         if (response.strIngredient1) {
