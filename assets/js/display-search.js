@@ -38,8 +38,8 @@ function searchApi(query, format) {
         var resultCard = document.createElement("section");
         resultCard.classList.add(
           "card",
-          "bg-light",
-          "text-dark",
+          "bg-primary",
+          "text-white",
           "mb-3",
           "p-3",
           "container"
@@ -94,10 +94,10 @@ function searchApi(query, format) {
         bodyContentEl2.innerHTML += '<div>' + "<strong>Ingredients:</strong> " + '</div>' + "</br>";
 
         if (ingredientsArray) {
-          bodyContentEl2.innerHTML += "<div>" + ingredientsArray + "</div>";
+          bodyContentEl2.innerHTML += "<ol>" + ingredientsArray + "</ol>";
         }
         if (measureArray) {
-          bodyContentEl3.innerHTML += "<div>" + measureArray + "</div>";
+          bodyContentEl3.innerHTML += "<ol>" + measureArray + "</ol>";
           // '<strong>Measure:</strong> ' + measureArray +
           '</br>'
         } else {

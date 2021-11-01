@@ -27,8 +27,8 @@ h6 {
 }
 
 .container {
-  display: flex;
   justify-content:space-between;
+  display: flex;
   flex-direction: row;
   flex-wrap: wrap;
 }
