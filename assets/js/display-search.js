@@ -50,36 +50,38 @@ function searchApi(query, format) {
           '<strong>Served in:</strong> ' + element.strGlass + '<br/>';
          
          
-          var ingredientsArray = [element.strIngredient1, element.strIngredient2, element.strIngredient3, element.strIngredient4, element.strIngredient5, element.strIngredient6, element.strIngredient7 ];
+          var ingredientsArray = [element.strMeasure1, element.strIngredient1, element.strMeasure2,element.strIngredient2, element.strMeasure3, element.strIngredient3, element.strMeasure4, element.strIngredient4, element.strMeasure5, element.strIngredient5, element.strMeasure6, element.strIngredient6, element.strMeasure7, element.strIngredient7];
             tempArr = [];
             for( let i of ingredientsArray)
                 i && tempArr.push(i);
                 ingredientsArray = tempArr;
-          var measureArray = [element.strMeasure1, element.strMeasure2, element.strMeasure3, element.strMeasure4, element.strMeasure5, element.strMeasure6, element.strMeasure7 ];
-            tempArr2 = [];
-            for( let i of measureArray)
-                i && tempArr2.push(i);
-                measureArray = tempArr2;
+          // var measureArray = [element.strMeasureeasure1, element.strMeasure2, element.strMeasure3, element.strMeasure4, element.strMeasure5, element.strMeasure6, element.strMeasure7 ];
+          //   tempArr2 = [];
+          //   for( let i of measureArray)
+          //       i && tempArr2.push(i);
+          //       measureArray = tempArr2;
         
         
         
         
 // console.log(element.strIngredient1)
 console.log(ingredientsArray)
-console.log(measureArray)
+// console.log(measureArray)
 
 
         if (ingredientsArray) {
           bodyContentEl.innerHTML +=
             '<strong>Ingredients:</strong> ' + ingredientsArray +
-            '</br>'
+            '</br>' 
+            // '<strong>Measure:</strong> ' + measureArray +
+            // '</br>'
         } else {
           bodyContentEl.innerHTML +=
             '<strong>Ingredients:</strong> No ingredients for this entry.';
             '</br>'
         }
         
-        
+
         if (element.strInstructions) {
           bodyContentEl.innerHTML += 
           '<strong>Instructions:</strong> ' + element.strInstructions;
