@@ -54,9 +54,9 @@ function searchApi(query, format) {
 
         var bodyContentEl1 = document.createElement("p");
         var bodyContentEl2 = document.createElement("ul");
-        bodyContentEl2.classList.add("row");
+        bodyContentEl2.classList.add("column");
         var bodyContentEl3 = document.createElement("ul");
-        bodyContentEl3.classList.add("row");
+        bodyContentEl3.classList.add("column");
         var bodyContentEl4 = document.createElement("p");
 
         bodyContentEl1.innerHTML =
@@ -91,7 +91,8 @@ function searchApi(query, format) {
         console.log(ingredientsArray);
         console.log(measureArray);
 
-        bodyContentEl1.innerHTML += "<strong>Ingredients:</strong> " + "</br>";
+        bodyContentEl2.innerHTML += '<div>' + "<strong>Ingredients:</strong> " + '</div>' + "</br>";
+
         if (ingredientsArray) {
           bodyContentEl2.innerHTML += "<div>" + ingredientsArray + "</div>";
         }
