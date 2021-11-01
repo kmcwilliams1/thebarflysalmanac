@@ -35,17 +35,18 @@ function searchApi(query, format) {
         const element = response.drinks[i];
         console.log(element);
         // console.log(response)
-        var resultCard = document.createElement("div");
+        var resultCard = document.createElement("section");
         resultCard.classList.add(
           "card",
           "bg-light",
           "text-dark",
           "mb-3",
-          "p-3"
+          "p-3",
+          "container"
         );
 
-        var resultBody = document.createElement("div");
-        resultBody.classList.add("card-body");
+        var resultBody = document.createElement("section");
+        resultBody.classList.add("card-body", "container");
         resultCard.append(resultBody);
 
         var titleEl = document.createElement("h3");
@@ -92,12 +93,12 @@ function searchApi(query, format) {
 
         bodyContentEl1.innerHTML += "<strong>Ingredients:</strong> " + "</br>";
         if (ingredientsArray) {
-          bodyContentEl2.innerHTML += "<div class='col'>" + ingredientsArray + "</div>";
+          bodyContentEl2.innerHTML += "<div>" + ingredientsArray + "</div>";
         }
         if (measureArray) {
-          bodyContentEl3.innerHTML += "<div class='col'>" + measureArray + "</div>";
+          bodyContentEl3.innerHTML += "<div>" + measureArray + "</div>";
           // '<strong>Measure:</strong> ' + measureArray +
-          // '</br>'
+          '</br>'
         } else {
           bodyContentE3.innerHTML +=
             "<strong>Ingredients:</strong> No ingredients for this entry.";
@@ -114,18 +115,18 @@ function searchApi(query, format) {
           ("</br>");
         }
 
-        // var linkButtonEl = document.createElement('a');
-        // linkButtonEl.textContent = 'Read More';
-        // linkButtonEl.setAttribute('href', element.url);
-        // linkButtonEl.classList.add('btn', 'btn-dark');
+        var imgThumbEl = document.createElement('img');
+        // imgThumbEl.textContent = 'Read More';
+        imgThumbEl.setAttribute('src', element.strDrinkThumb);
+        imgThumbEl.classList.add('width', 'picture');
 
         resultBody.append(
           titleEl,
+          imgThumbEl,
           bodyContentEl1,
           bodyContentEl2,
           bodyContentEl3,
-          bodyContentEl4
-          // linkButtonEl
+          bodyContentEl4,
         );
         resultContentEl.append(resultCard);
       }
@@ -139,8 +140,10 @@ function handleSearchFormSubmit(event) {
   event.preventDefault();
   var searchInputVal = document.querySelector("#search-input").value;
   var formatInputVal = document.querySelector("#format-input").value;
+  var queryString = './search-results.html?q=' + searchInputVal + '&format=' + formatInputVal;
+  location.assign(queryString);
   searchApi(searchInputVal, formatInputVal);
-  // console.log(fetchDrinkList)
+  console.log(fetchDrinkList)
 }
 
 searchFormEl.addEventListener("submit", handleSearchFormSubmit);
