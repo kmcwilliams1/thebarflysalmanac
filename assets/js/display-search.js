@@ -80,41 +80,25 @@ function searchApi(query, format) {
         for (let i of measureArray) i && tempArr2.push(i);
         measureArray = tempArr2;
 
-        // if (tempArr2 < tempArr){
-        //   newIngredientsArray2.push()
-        // }
 
         newIngredientsArray = [];
         console.log(newIngredientsArray)
         for (let i = 0; i < ingredientsArray.length; i++) {
-
-
-          // i dont think we need the i === 0
-          // if (i === 0) {
-          //   newIngredientsArray.push(measureArray[i] + ingredientsArray[i]);
-          // } else 
           if (i < measureArray.length) {
             newIngredientsArray.push(
               " " + measureArray[i] + " " + ingredientsArray[i]
             );
           }
-          else if ( measureArray.length < ingredientsArray.length) {
+          else if (!measureArray[i]){
             newIngredientsArray.push(
-              " " + measureArray[i] + " " + ingredientsArray[i]
-            );
+             " " + ingredientsArray[i]
+            )
           }
-          // else if (measureArray < ingredientsArray) {
-          //   if (measureArray === undefined){
-          //   newIngredientsArray.push(
-          //     " " + measureArray + " " + ingredientsArray[i]
-          //   )
-          //   }
-          // }
         }
 
         if (ingredientsArray) {
           bodyContentEl2.innerHTML +=
-            "<strong>Ingredients: </strong>" + "</br>" + newIngredientsArray + "</br>";
+            "<strong>Ingredients: </strong>" + "</br>" + "  " + newIngredientsArray + "</br>";
         } else {
           bodyContentE3.innerHTML +=
             "<strong>Ingredients:</strong> No ingredients for this entry.";
